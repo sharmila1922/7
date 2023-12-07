@@ -23,6 +23,7 @@ from kivy.graphics import Rectangle, Line, Color
 from kivymd.uix.card import MDCard
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.image import Image
+from android.permissions import request_permissions, Permission
 Bucket_Name = "insurence-management-s3-project"
 s3_client = boto3.client('s3', aws_access_key_id="AKIA6E6I24PMFYM3NRPD", aws_secret_access_key="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")
 conn = pymysql.connect(host="insurencemanagementrds.cwhayzj5qrw4.us-east-1.rds.amazonaws.com", user="admin", password="admin123", db="SnowRemovalApp")
@@ -131,7 +132,7 @@ class AddLocationScreen(Screen):
             permission_request = package_manager.checkPermission(permission_name, context.getPackageName())
 
             if permission_request != autoclass('android.content.pm.PackageManager').PERMISSION_GRANTED:
-                from android.permissions import request_permissions, Permission
+                
                 request_permissions([Permission.READ_EXTERNAL_STORAGE])
 
     def on_request_permissions(self, permissions, results):
